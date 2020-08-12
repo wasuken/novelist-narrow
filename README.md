@@ -76,7 +76,6 @@ create table accesslogs(
 	reader_id integer,
 	ip_address varchar(16),
 	user_agent_info var_char(150),
-	primary key(post_id, reader_id),
 	foreign key(post_id) references posts(id),
 	foreign key(reader_id) references readers(id)
 )
