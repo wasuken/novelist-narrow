@@ -15,6 +15,7 @@ class PostController extends Controller
     public function index(Request $req)
     {
         $validator = \Validator::make($req->all(), [
+            'novel_id' => 'required|exists:novels,id',
             'count' => 'integer|min:1|max:100'
         ]);
         if(!isset($req->count)){
@@ -26,7 +27,8 @@ class PostController extends Controller
                 'errors' => $validator->errors()
             ], 400);
         }
-        $posts = \App\Post::select('title', 'body', 'created_at', 'updated_at')
+        $posts = \App\Post::where('novel_id', $req->novel_id)
+               ->select('title', 'body', 'created_at', 'updated_at')
               ->orderBy('created_at')
               ->paginate($req->count);
         return $posts;

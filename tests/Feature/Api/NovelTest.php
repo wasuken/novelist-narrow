@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class PostTest extends TestCase
+class NovelTest extends TestCase
 {
     use RefreshDatabase;
     /**
@@ -16,7 +16,7 @@ class PostTest extends TestCase
      */
     public function testBasic()
     {
-        $response = $this->get('/api/post?novel_id=1');
+        $response = $this->get('/api/novel?q=妹');
 
         $response->assertStatus(200);
     }
