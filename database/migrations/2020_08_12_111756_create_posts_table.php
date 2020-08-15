@@ -19,7 +19,11 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->integer('novel_id');
             $table->timestamps();
-            $table->foreign('novel_id')->references('id')->on('novels');
+            $table->foreign('novel_id')
+                  ->references('id')
+                  ->on('novels')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
         });
     }
 

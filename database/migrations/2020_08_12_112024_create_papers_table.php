@@ -16,7 +16,7 @@ class CreatePapersTable extends Migration
         Schema::create('papers', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('text');
+            $table->string('description');
             $table->timestamps();
         });
     }

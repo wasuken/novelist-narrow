@@ -14,12 +14,17 @@ class CreatePostSubstringsTable extends Migration
     public function up()
     {
         Schema::create('post_substrings', function (Blueprint $table) {
+            $table->id();
             $table->bigInteger('post_id');
             $table->bigInteger('begin');
             $table->bigInteger('end');
-            $table->primary(array('post_id', 'begin', 'end'));
-            $table->foreign('post_id')->references('id')->on('posts');
             $table->timestamps();
+            $table
+                ->foreign('post_id')
+                ->references('id')
+                ->on('posts')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 

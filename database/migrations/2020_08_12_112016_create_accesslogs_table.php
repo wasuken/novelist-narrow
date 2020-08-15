@@ -20,8 +20,18 @@ class CreateAccesslogsTable extends Migration
             $table->string('ip_address');
             $table->string('user_agent_info');
             $table->timestamps();
-            $table->foreign('post_id')->references('id')->on('posts');
-            $table->foreign('reader_id')->references('user_id')->on('readers');
+            $table
+                ->foreign('post_id')
+                ->references('id')
+                ->on('posts')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table
+                ->foreign('reader_id')
+                ->references('user_id')
+                ->on('readers')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 

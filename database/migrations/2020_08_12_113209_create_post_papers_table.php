@@ -21,9 +21,24 @@ class CreatePostPapersTable extends Migration
             $table->timestamps();
 
             $table->primary(array('post_id', 'paper_id', 'post_substring_id'));
-            $table->foreign('post_id')->references('id')->on('posts');
-            $table->foreign('paper_id')->references('id')->on('papers');
-            $table->foreign('post_substring_id')->references('id')->on('post_substrings');
+            $table
+                ->foreign('post_id')
+                ->references('id')
+                ->on('posts')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table
+                ->foreign('paper_id')
+                ->references('id')
+                ->on('papers')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table
+                ->foreign('post_substring_id')
+                ->references('id')
+                ->on('post_substrings')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 

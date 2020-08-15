@@ -19,7 +19,11 @@ class CreateNovelsTable extends Migration
             $table->string('description');
             $table->bigInteger('writer_id');
             $table->timestamps();
-            $table->foreign('writer_id')->references('user_id')->on('writers');
+            $table->foreign('writer_id')
+                  ->references('user_id')
+                  ->on('writers')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
         });
     }
 

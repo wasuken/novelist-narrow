@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class PostSectionSeeder extends Seeder
 {
@@ -11,6 +14,13 @@ class PostSectionSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('post_sections')->insert([
+            'post_id' => \App\Post::all()->first()->id,
+            'section_id' => \App\Section::all()->first()->id,
+        ]);
+        DB::table('post_sections')->insert([
+            'post_id' => \App\Post::all()->skip(1)->first()->id,
+            'section_id' => \App\Section::all()->first()->id,
+        ]);
     }
 }

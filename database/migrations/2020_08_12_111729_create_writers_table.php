@@ -17,7 +17,11 @@ class CreateWritersTable extends Migration
             $table->bigInteger('user_id');
             $table->timestamps();
             $table->primary('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')
+                  ->references('id')
+                  ->on('users')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
         });
     }
 

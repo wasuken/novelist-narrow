@@ -15,11 +15,21 @@ class CreatePostSectionsTable extends Migration
     {
         Schema::create('post_sections', function (Blueprint $table) {
             $table->bigInteger('post_id');
-            $table->bigInteger('section_id');
+            $table->string('section_id');
             $table->timestamps();
             $table->primary(array('post_id', 'section_id'));
-            $table->foreign('post_id')->references('id')->on('posts');
-            $table->foreign('section_id')->references('id')->on('sections');
+            $table
+                ->foreign('post_id')
+                ->references('id')
+                ->on('posts')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table
+                ->foreign('section_id')
+                ->references('id')
+                ->on('sections')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 

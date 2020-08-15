@@ -14,8 +14,25 @@ class CreateBookmarksTable extends Migration
     public function up()
     {
         Schema::create('bookmarks', function (Blueprint $table) {
-            $table->id();
+            $table->bigInteger('reader_id');
+            $table->bigInteger('post_id');
+            $table->double('position');
+            $table->boolean('enable')->default(true);
             $table->timestamps();
+
+            $table->primary(['reader_id', 'post_id']);
+            $table
+                ->foreign('reader_id')
+                ->references('user_id')
+                ->on('readers')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table
+                ->foreign('post_id')
+                ->references('id')
+                ->on('posts')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 

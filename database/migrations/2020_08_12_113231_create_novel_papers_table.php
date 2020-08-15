@@ -18,8 +18,18 @@ class CreateNovelPapersTable extends Migration
             $table->bigInteger('novel_id');
             $table->timestamps();
             $table->primary(array('paper_id', 'novel_id'));
-            $table->foreign('paper_id')->references('id')->on('papers');
-            $table->foreign('novel_id')->references('id')->on('novels');
+            $table
+                ->foreign('paper_id')
+                ->references('id')
+                ->on('papers')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table
+                ->foreign('novel_id')
+                ->references('id')
+                ->on('novels')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 

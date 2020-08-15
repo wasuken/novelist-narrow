@@ -10,7 +10,7 @@ class CreateSectionsTable extends Migration
      * Run the migrations.
      *
      * @return void
-     */
+n     */
     public function up()
     {
         Schema::create('sections', function (Blueprint $table) {
