@@ -111,3 +111,11 @@ create table novel_papers(
 )
 
 ```
+
+### TODO
+
+* とりあえずみてくれをつくる。
+
+	* seedを用意する。
+
+	* frontendをかく。
